@@ -150,19 +150,19 @@ gulp.task("js-inline", ["js-babel"], () => {
     $.fancyLog("-> Copying inline js");
     return gulp.src(pkg.globs.inlineJs)
         .pipe($.plumber({errorHandler: onError}))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.newer({dest: pkg.paths.templates + "_inlinejs", ext: ".min.js"}),
             $.newer({dest: pkg.paths.templates + "_inlinejs"})
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.uglify()
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.rename({suffix: ".min"})
         ))
         .pipe($.size({gzip: true, showFiles: true}))
         .pipe(gulp.dest(pkg.paths.templates + "_inlinejs"))
-        .pipe($.filter("**/*.js"))
+        .pipe($.filter("**/*.{js,es6}"))
         .pipe($.livereload());
 });
 
@@ -171,14 +171,14 @@ gulp.task("js", ["js-inline"], () => {
     $.fancyLog("-> Building js");
     return gulp.src(pkg.globs.distJs)
         .pipe($.plumber({errorHandler: onError}))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.newer({dest: pkg.paths.dist.js, ext: ".min.js"}),
             $.newer({dest: pkg.paths.dist.js})
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.uglify()
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.rename({suffix: ".min"})
         ))
         .pipe($.header(banner, {pkg: pkg}))
@@ -396,7 +396,7 @@ gulp.task("default", ["set-dev-node-env","css", "js"], () => {
     $.livereload.listen();
     gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css"]);
     gulp.watch([pkg.paths.src.css + "**/*.css"], ["css"]);
-    gulp.watch([pkg.paths.src.js + "**/*.js"], ["js"]);
+    gulp.watch([pkg.paths.src.js + "**/*.{js,es6}"], ["js"]);
     gulp.watch([pkg.paths.templates + "**/*.{html,htm,twig}"], () => {
         gulp.src(pkg.paths.templates)
             .pipe($.plumber({errorHandler: onError}))

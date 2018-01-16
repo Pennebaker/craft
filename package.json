@@ -111,7 +111,8 @@
             "./node_modules/vue/dist/vue.min.js"
         ],
         "babelJs": [
-            "./src/js/*.js"
+            "./src/js/*.js",
+            "./src/js/*.es6"
         ],
         "inlineJs": [
             "./node_modules/fg-loadcss/src/loadCSS.js",
