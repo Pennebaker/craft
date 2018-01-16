@@ -57,39 +57,8 @@ gulp.task("scss", () => {
         .pipe(gulp.dest(pkg.paths.build.css));
 });
 
-// tailwind task - build the Tailwind CSS
-gulp.task("tailwind", () => {
-    $.fancyLog("-> Compiling tailwind css");
-    return gulp.src(pkg.paths.tailwindcss.src)
-        .pipe($.postcss([
-            $.tailwindcss(pkg.paths.tailwindcss.conf),
-            require("autoprefixer"),
-        ]))
-        .pipe($.if(process.env.NODE_ENV === "production",
-            $.purgecss({
-                extractors: [{
-                    extractor: TailwindExtractor,
-                    extensions: ["html", "twig", "css", "js"]
-                }],
-                whitelist: pkg.globs.purgecssWhitelist,
-                content: pkg.globs.purgecss
-            })
-        ))
-        .pipe(gulp.dest(pkg.paths.build.css));
-});
-
-// Custom PurgeCSS extractor for Tailwind that allows special characters in
-// class names.
-//
-// https://github.com/FullHuman/purgecss#extractor
-class TailwindExtractor {
-    static extract(content) {
-        return content.match(/[A-z0-9-:\/]+/g);
-    }
-}
-
 // css task - combine & minimize any distribution CSS into the public css folder, and add our banner to it
-gulp.task("css", ["tailwind", "scss"], () => {
+gulp.task("css", ["scss"], () => {
     $.fancyLog("-> Building css");
     return gulp.src(pkg.globs.distCss)
         .pipe($.plumber({errorHandler: onError}))

@@ -39,10 +39,6 @@
             "dest": "./web/img/site/",
             "path": "/img/site/"
         },
-        "tailwindcss": {
-            "src": "./src/css/site.css",
-            "conf": "./tailwind.js"
-        },
         "scss": [],
         "craftConfig": "./config/",
         "templates": "./templates/"
@@ -178,7 +174,6 @@
         "gulp-uglify": "^1.5.4",
         "moment": "^2.14.1",
         "pa11y": "^4.11.0",
-        "tailwindcss": "^0.3.0",
         "vinyl-source-stream": "^1.1.0"
     },
     "scripts": {
