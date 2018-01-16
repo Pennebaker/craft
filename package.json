@@ -111,6 +111,8 @@
             "./node_modules/axios/dist/axios.min.js",
             "./node_modules/lazysizes/lazysizes.min.js",
             "./node_modules/lazysizes/plugins/bgset/ls.bgset.min.js",
+            "./node_modules/lazysizes/plugins/respimg/ls.respimg.min.js",
+            "./node_modules/lazysizes/plugins/attrchange/ls.attrchange.min.js",
             "./node_modules/picturefill/dist/picturefill.min.js",
             "./node_modules/vue/dist/vue.min.js"
         ],
