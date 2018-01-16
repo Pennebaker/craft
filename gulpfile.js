@@ -361,8 +361,16 @@ gulp.task("generate-fontello", () => {
         .pipe(gulp.dest(pkg.paths.build.fontello));
 });
 
+// scss-fontello task
+gulp.task("scss-fontello", () => {
+    return gulp.src(pkg.paths.build.fontello + "css/fontello-codes.css")
+        .pipe($.replace(/^\.([a-z0-9\-]+):before { content(: '\\[a-z0-9]+';) }(.*)$/gmi, "$$$1$2$3"))
+        .pipe($.rename({prefix: "_"}))
+        .pipe(gulp.dest(pkg.paths.build.fontello + "scss/"));
+});
+
 // copy fonts task
-gulp.task("fonts", ["generate-fontello"], () => {
+gulp.task("fonts", ["generate-fontello", "scss-fontello"], () => {
     return gulp.src(pkg.globs.fonts)
         .pipe(gulp.dest(pkg.paths.dist.fonts));
 });

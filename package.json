@@ -39,7 +39,9 @@
             "dest": "./web/img/site/",
             "path": "/img/site/"
         },
-        "scss": [],
+        "scss": [
+            "./build/fonts/fontello/scss"
+        ],
         "craftConfig": "./config/",
         "templates": "./templates/"
     },
@@ -55,7 +57,6 @@
     },
     "globs": {
         "distCss": [
-            "./build/fonts/fontello/css/fontello-codes.css",
             "./build/css/*.css"
         ],
         "img": [
