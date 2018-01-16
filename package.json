@@ -148,6 +148,7 @@
         "gulp-babel": "^6.1.2",
         "gulp-cached": "^1.1.1",
         "gulp-concat": "^2.6.0",
+        "gulp-csscomb": "^3.0.8",
         "gulp-cssnano": "^2.1.2",
         "gulp-debug": "^2.1.2",
         "gulp-download": "^0.0.1",

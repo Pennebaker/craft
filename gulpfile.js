@@ -40,6 +40,14 @@ const banner = (function() {
     return result;
 })();
 
+// scss - comb the scss
+gulp.task("scss-comb", () => {
+    $.fancyLog("-> Compiling scss");
+    return gulp.src(pkg.paths.src.scss + pkg.vars.scssName)
+        .pipe($.csscomb())
+        .pipe(gulp.dest(pkg.paths.src.scss));
+});
+
 // scss - build the scss to the build folder, including the required paths, and writing out a sourcemap
 gulp.task("scss", () => {
     $.fancyLog("-> Compiling scss");
@@ -58,7 +66,7 @@ gulp.task("scss", () => {
 });
 
 // css task - combine & minimize any distribution CSS into the public css folder, and add our banner to it
-gulp.task("css", ["scss"], () => {
+gulp.task("css", ["scss-comb", "scss"], () => {
     $.fancyLog("-> Building css");
     return gulp.src(pkg.globs.distCss)
         .pipe($.plumber({errorHandler: onError}))
