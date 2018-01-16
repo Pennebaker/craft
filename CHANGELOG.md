@@ -1,3 +1,16 @@
+# pennebaker/craft Change Log
+
+## 1.0.10 - 2018.xx.xx
+### Added
+* Added Bourbon & Neat SCSS
+* Added Bourbon & Neat SCSS
+### Removed
+* Removed Tailwind CSS
+* Removed .htaccess for Apache
+* Removed web.config for ASP.NET
+
+Brought to you by [pennebaker](https://pennebaker.com/)
+
 # nystudio107/craft Change Log
 
 ## 1.0.9 - 2018.01.06
