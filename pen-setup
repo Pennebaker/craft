@@ -1,10 +1,10 @@
 #!/usr/bin/env php
 <?php
 /**
- * @author    nystudio107
- * @copyright Copyright (c) 2017 nystudio107
- * @link      https://nystudio107.com/
- * @package   nystudio107/craft
+ * @author    pennebaker, nystudio107
+ * @copyright Copyright (c) 2017 pennebaker
+ * @link      https://pennebaker.com/
+ * @package   pennebaker/craft
  * @since     1.0.0
  * @license   MIT
  */
@@ -75,6 +75,16 @@ const CRAFT_SCRIPTS_SETUP = [
             'substr'  => '"public"',
             'env'     => 'DB_SCHEMA',
             'default' => 'public',
+        ],
+        'LOCAL_CHOWN_USER="admin"' => [
+            'substr'  => 'admin',
+            'env'     => '',
+            'default' => 'www-data',
+        ],
+        'LOCAL_CHOWN_GROUP="apache"' => [
+            'substr'  => 'apache',
+            'env'     => '',
+            'default' => 'www-data',
         ],
     ],
 ];
@@ -213,7 +223,7 @@ function welcomeNysCraft()
     $script = './craft setup';
     outputString(PHP_EOL.'    '.$script, Console::FG_GREEN);
     outputString(PHP_EOL.'Then to set up Craft 3 Multi-Environment & Craft-Scripts, run:', Console::FG_YELLOW);
-    $script = './nys-setup';
+    $script = './pen-setup';
     outputString(PHP_EOL.'    '.$script, Console::FG_GREEN);
     outputString(PHP_EOL.'Your setup is not complete until you run these two commands.', Console::FG_YELLOW);
 }
@@ -224,7 +234,7 @@ function welcomeNysCraft()
 function updateNysCraft()
 {
     // Say hello
-    outputString(PHP_EOL.'Updating nys-setup', Console::FG_YELLOW);
+    outputString(PHP_EOL.'Updating pen-setup', Console::FG_YELLOW);
     // Set up Craft-Scripts
     setupCraftScripts();
     // Say goodbye
@@ -237,7 +247,7 @@ function updateNysCraft()
 function setupNysCraft()
 {
     // Say hello
-    outputString(PHP_EOL.'Welcome to nys-setup', Console::FG_YELLOW);
+    outputString(PHP_EOL.'Welcome to pen-setup', Console::FG_YELLOW);
     // Set up Craft-Scripts
     setupCraftScripts();
     // Setup Craft 3 Multi-Environment
