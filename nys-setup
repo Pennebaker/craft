@@ -193,7 +193,7 @@ if (empty($argv[1])) {
             break;
 
         case 'update':
-            // Display a welcome message
+            // Update our Craft-Scripts symlinks as needed!
             updateNysCraft();
             break;
 
