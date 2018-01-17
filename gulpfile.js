@@ -49,7 +49,7 @@ gulp.task("scss-comb", () => {
 });
 
 // scss - build the scss to the build folder, including the required paths, and writing out a sourcemap
-gulp.task("scss", () => {
+gulp.task("scss", ["scss-fontello"], () => {
     $.fancyLog("-> Compiling scss");
     return gulp.src(pkg.paths.src.scss + pkg.vars.scssName)
         .pipe($.plumber({errorHandler: onError}))
@@ -362,7 +362,7 @@ gulp.task("generate-fontello", () => {
 });
 
 // scss-fontello task
-gulp.task("scss-fontello", () => {
+gulp.task("scss-fontello", ["fonts"], () => {
     return gulp.src(pkg.paths.build.fontello + "css/fontello-codes.css")
         .pipe($.replace(/^\.([a-z0-9\-]+):before { content(: '\\[a-z0-9]+';) }(.*)$/gmi, "$$$1$2$3"))
         .pipe($.rename({prefix: "_"}))
@@ -370,7 +370,7 @@ gulp.task("scss-fontello", () => {
 });
 
 // copy fonts task
-gulp.task("fonts", ["generate-fontello", "scss-fontello"], () => {
+gulp.task("fonts", ["generate-fontello"], () => {
     return gulp.src(pkg.globs.fonts)
         .pipe(gulp.dest(pkg.paths.dist.fonts));
 });
@@ -399,7 +399,7 @@ gulp.task("set-prod-node-env", function() {
 });
 
 // Default task
-gulp.task("default", ["set-dev-node-env","css", "js"], () => {
+gulp.task("default", ["set-dev-node-env", "css", "js"], () => {
     $.fancyLog("-> Livereload listening for changes");
     $.livereload.listen();
     gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css"]);
@@ -413,4 +413,4 @@ gulp.task("default", ["set-dev-node-env","css", "js"], () => {
 });
 
 // Production build
-gulp.task("build", ["set-prod-node-env", "static-assets-version", "download", "favicons", "imagemin", "fonts", "criticalcss"]);
+gulp.task("build", ["set-prod-node-env", "static-assets-version", "download", "favicons", "imagemin", "criticalcss"]);
