@@ -47,7 +47,7 @@ const INSTALL_PLUGINS = [
     'supersort',
     'cp-nav',
     'expanded-singles',
-    'element-ap'
+    'element-api'
 ];
 
 const CRAFT_SCRIPTS_SETUP = [
