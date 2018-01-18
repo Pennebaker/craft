@@ -1,6 +1,6 @@
 # pennebaker/craft Change Log
 
-## 1.0.10 - 2018.01.18
+## 1.0.11 - 2018.01.18
 ### Changed
 * Moved all plugins from composer.json to pen-setup script.
 
