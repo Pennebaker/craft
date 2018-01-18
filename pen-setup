@@ -23,6 +23,7 @@ const INSTALL_PLUGINS = [
     'path-tools',
     'route-map',
     'rich-variables',
+    'similar',
     'transcoder',
     'typogrify',
     'preparse-field',
