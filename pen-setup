@@ -14,10 +14,40 @@ use yii\helpers\Console;
 use mikehaertl\shellcommand\Command as ShellCommand;
 
 const INSTALL_PLUGINS = [
+    'cookies',
     'eager-beaver',
+    'fastcgi-cache-bust',
     'image-optimize',
+    'instant-analytics',
     'minify',
+    'path-tools',
+    'route-map',
+    'rich-variables',
+    'transcoder',
     'typogrify',
+    'preparse-field',
+    'advanced-url-field',
+    'element-map',
+    'dolphiq-iconpicker',
+    'jsonclient',
+    'sitemap',
+    'inventory',
+    'enupal-backup',
+    'match-input',
+    'snitch',
+    'importable',
+    'craftql',
+    'cp-field-inspect',
+    'lettering',
+    'readability',
+    'nsm-fields',
+    'upper',
+    'autologin',
+    'http2-server-push',
+    'supersort',
+    'cp-nav',
+    'expanded-singles',
+    'element-ap'"
 ];
 
 const CRAFT_SCRIPTS_SETUP = [
