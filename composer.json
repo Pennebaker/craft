@@ -1,7 +1,7 @@
 {
   "name": "pennebaker/craft",
   "description": "pennebaker Craft 3 CMS scaffolding project",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "keywords": [
     "craft",
     "cms",
@@ -27,7 +27,7 @@
     "craftcms/guest-entries": "^2.1.3",
     "craftcms/mandrill": "^1.1.0",
     "nystudio107/craft-scripts": "^1.2.4",
-    "nystudio107/craft3-multi-environment": "^1.0.5",
+    "nystudio107/craft3-multi-environment": "^1.0.5"
   },
   "autoload": {
     "psr-4": {
