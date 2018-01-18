@@ -1,6 +1,10 @@
 # pennebaker/craft Change Log
 
-## 1.0.10 - 2018.xx.xx
+## 1.0.10 - 2018.01.18
+### Changed
+* Moved all plugins from composer.json to pen-setup script.
+
+## 1.0.10 - 2018.01.17
 ### Added
 * Added Bourbon & Neat SCSS
 * Added Bourbon & Neat SCSS
