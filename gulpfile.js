@@ -40,8 +40,16 @@ const banner = (function() {
     return result;
 })();
 
+// scss - comb the scss
+gulp.task("scss-comb", () => {
+    $.fancyLog("-> Compiling scss");
+    return gulp.src(pkg.paths.src.scss + pkg.vars.scssName)
+        .pipe($.csscomb())
+        .pipe(gulp.dest(pkg.paths.src.scss));
+});
+
 // scss - build the scss to the build folder, including the required paths, and writing out a sourcemap
-gulp.task("scss", () => {
+gulp.task("scss", ["scss-fontello"], () => {
     $.fancyLog("-> Compiling scss");
     return gulp.src(pkg.paths.src.scss + pkg.vars.scssName)
         .pipe($.plumber({errorHandler: onError}))
@@ -57,39 +65,8 @@ gulp.task("scss", () => {
         .pipe(gulp.dest(pkg.paths.build.css));
 });
 
-// tailwind task - build the Tailwind CSS
-gulp.task("tailwind", () => {
-    $.fancyLog("-> Compiling tailwind css");
-    return gulp.src(pkg.paths.tailwindcss.src)
-        .pipe($.postcss([
-            $.tailwindcss(pkg.paths.tailwindcss.conf),
-            require("autoprefixer"),
-        ]))
-        .pipe($.if(process.env.NODE_ENV === "production",
-            $.purgecss({
-                extractors: [{
-                    extractor: TailwindExtractor,
-                    extensions: ["html", "twig", "css", "js"]
-                }],
-                whitelist: pkg.globs.purgecssWhitelist,
-                content: pkg.globs.purgecss
-            })
-        ))
-        .pipe(gulp.dest(pkg.paths.build.css));
-});
-
-// Custom PurgeCSS extractor for Tailwind that allows special characters in
-// class names.
-//
-// https://github.com/FullHuman/purgecss#extractor
-class TailwindExtractor {
-    static extract(content) {
-        return content.match(/[A-z0-9-:\/]+/g);
-    }
-}
-
 // css task - combine & minimize any distribution CSS into the public css folder, and add our banner to it
-gulp.task("css", ["tailwind", "scss"], () => {
+gulp.task("css", ["scss-comb", "scss"], () => {
     $.fancyLog("-> Building css");
     return gulp.src(pkg.globs.distCss)
         .pipe($.plumber({errorHandler: onError}))
@@ -173,19 +150,19 @@ gulp.task("js-inline", ["js-babel"], () => {
     $.fancyLog("-> Copying inline js");
     return gulp.src(pkg.globs.inlineJs)
         .pipe($.plumber({errorHandler: onError}))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.newer({dest: pkg.paths.templates + "_inlinejs", ext: ".min.js"}),
             $.newer({dest: pkg.paths.templates + "_inlinejs"})
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.uglify()
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.rename({suffix: ".min"})
         ))
         .pipe($.size({gzip: true, showFiles: true}))
         .pipe(gulp.dest(pkg.paths.templates + "_inlinejs"))
-        .pipe($.filter("**/*.js"))
+        .pipe($.filter("**/*.{js,es6}"))
         .pipe($.livereload());
 });
 
@@ -194,14 +171,14 @@ gulp.task("js", ["js-inline"], () => {
     $.fancyLog("-> Building js");
     return gulp.src(pkg.globs.distJs)
         .pipe($.plumber({errorHandler: onError}))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.newer({dest: pkg.paths.dist.js, ext: ".min.js"}),
             $.newer({dest: pkg.paths.dist.js})
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.uglify()
         ))
-        .pipe($.if(["*.js", "!*.min.js"],
+        .pipe($.if(["*.{js,es6}", "!*.min.js"],
             $.rename({suffix: ".min"})
         ))
         .pipe($.header(banner, {pkg: pkg}))
@@ -384,6 +361,14 @@ gulp.task("generate-fontello", () => {
         .pipe(gulp.dest(pkg.paths.build.fontello));
 });
 
+// scss-fontello task
+gulp.task("scss-fontello", ["fonts"], () => {
+    return gulp.src(pkg.paths.build.fontello + "css/fontello-codes.css")
+        .pipe($.replace(/^\.([a-z0-9\-]+):before { content(: '\\[a-z0-9]+';) }(.*)$/gmi, "$$$1$2$3"))
+        .pipe($.rename({prefix: "_"}))
+        .pipe(gulp.dest(pkg.paths.build.fontello + "scss/"));
+});
+
 // copy fonts task
 gulp.task("fonts", ["generate-fontello"], () => {
     return gulp.src(pkg.globs.fonts)
@@ -414,12 +399,12 @@ gulp.task("set-prod-node-env", function() {
 });
 
 // Default task
-gulp.task("default", ["set-dev-node-env","css", "js"], () => {
+gulp.task("default", ["set-dev-node-env", "css", "js"], () => {
     $.fancyLog("-> Livereload listening for changes");
     $.livereload.listen();
     gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css"]);
     gulp.watch([pkg.paths.src.css + "**/*.css"], ["css"]);
-    gulp.watch([pkg.paths.src.js + "**/*.js"], ["js"]);
+    gulp.watch([pkg.paths.src.js + "**/*.{js,es6}"], ["js"]);
     gulp.watch([pkg.paths.templates + "**/*.{html,htm,twig}"], () => {
         gulp.src(pkg.paths.templates)
             .pipe($.plumber({errorHandler: onError}))
@@ -428,4 +413,4 @@ gulp.task("default", ["set-dev-node-env","css", "js"], () => {
 });
 
 // Production build
-gulp.task("build", ["set-prod-node-env", "static-assets-version", "download", "favicons", "imagemin", "fonts", "criticalcss"]);
+gulp.task("build", ["set-prod-node-env", "static-assets-version", "download", "favicons", "imagemin", "criticalcss"]);

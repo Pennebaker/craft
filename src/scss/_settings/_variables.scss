@@ -1,0 +1,57 @@
+// Default Animation Values
+$transition-speed: 250ms;
+
+// Colors
+$black: #000000;
+$white: #ffffff;
+
+// Transparent Colors
+$black-50: rgba($black, .5);
+// Font Colors
+$base-txt-color: $black;
+
+// Gradients
+
+// Borders
+
+// Sizes
+
+// Social Media Colors
+$facebook-color: #3b5998;
+$twitter-color: #00aced;
+$linkedin-color: #0077b5;
+$pinterest-color: #bd081c;
+$yelp-color: #af0606;
+
+$instagram-color: #bc318f;
+
+$instagram-gradient: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
+radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
+radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
+radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
+radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
+radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+
+$amp: '\46';
+$lt: '\74';
+$gt: '\76';
+$cent: '\242';
+$copy: '\252';
+$laquo: '\253';
+$reg: '\256';
+$deg: '\260';
+$raquo: '\273';
+$divide: '\367';
+$ndash: '\2013';
+$mdash: '\2014';
+$ldquo: '\201C';
+$rdquo: '\201D';
+$lsaquo: '\2039';
+$rsaquo: '\203A';
+$bull: '\2219';
+$hellip: '\2026';
+$trade: '\2122';
+$lang: '\2329';
+$rang: '\232A';

@@ -25,6 +25,15 @@ return [
         'securityKey' => getenv('SECURITY_KEY'),
     ],
 
+    // Local environment settings
+    'local' => [
+        // Base site URL
+        'siteUrl' => null,
+
+        // Dev Mode (see https://craftcms.com/support/dev-mode)
+        'devMode' => true,
+    ],
+
     // Dev environment settings
     'dev' => [
         // Base site URL
