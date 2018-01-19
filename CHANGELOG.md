@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.0.13] - 2018.01.19
 ### Changed
-* Synced the `modules/site` with `site-module` and pluginfactory.io generated modules.
+* Synced the `modules/site` with `site-module` and pluginfactory.io generated modules. [(by nystudio107)](https://github.com/nystudio107/craft/releases/tag/1.0.10)
 * Re-implement plugins in composer.json. (The cli install/plugins is for installing not fetching plugins)
 * Only install select plugins by default in pen-setup.
 
@@ -91,7 +91,7 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/v1.0.12...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/v1.0.13...HEAD
 [1.0.13]: https://github.com/pennebaker/craft/compare/1.0.12...1.0.13
 [1.0.12]: https://github.com/pennebaker/craft/compare/1.0.10...1.0.12
 [1.0.10]: https://github.com/pennebaker/craft/compare/1.0.9...1.0.10
