@@ -27,13 +27,13 @@ Then `cd` to your new project directory, and run Craft's `setup` console command
 
 Finally, run the `nys-setup` command to configure Craft-Scripts & Craft 3 Multi-Environment based on your newly created `.env` settings:
 
-    ./nys-setup
+    ./pen-setup
 
 That's it, enjoy!
 
 If you ever delete the `vendor` folder or such, just re-run:
 
-    ./nys-setup
+    ./pen-setup
 
 ...and it will re-create the symlink to your `.env.sh`; don't worry, it won't stomp on any changes you've made.
 
