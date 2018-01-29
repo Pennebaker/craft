@@ -80,6 +80,9 @@
     ],
     "post-update-cmd": [
       "@php pen-setup update"
+    ],
+    "post-install-cmd": [
+      "@php nys-setup update"
     ]
   }
 }
