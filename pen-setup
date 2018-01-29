@@ -284,6 +284,8 @@ function setupNysCraft()
     setupCraftMultiEnvironment();
     // Install the default plugins
     installPlugins();
+    // Install the global NodeJS packages
+    installGlobalNodePackages();
     // Install the NodeJS packages
     installNodePackages();
     // Say goodbye
@@ -356,6 +358,18 @@ function installPlugins()
     }
 }
 
+function installGlobalNodePackages()
+{
+    $command = 'npm i -g yarn gulp-cli';
+    outputString(PHP_EOL.'Installing global NodeJS packages via '.$command, Console::FG_YELLOW);
+    if (!empty($command)) {
+        $result = executeShellCommand($command);
+        outputString($result);
+    } else {
+        outputString('### unable to install global NodeJS packages', Console::FG_RED);
+    }
+}
+
 function installNodePackages()
 {
     $command = '';
@@ -366,7 +380,7 @@ function installNodePackages()
         $command = 'yarn';
     }
 
-    outputString(PHP_EOL.'Installing NodeJS packages via '.$command. ' (this may take a while)', Console::FG_YELLOW);
+    outputString(PHP_EOL.'Installing NodeJS packages via '.$command.' (this may take a while)', Console::FG_YELLOW);
 
     if (!empty($command)) {
         $result = executeShellCommand($command);
