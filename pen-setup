@@ -285,7 +285,9 @@ function setupNysCraft()
     // Install the default plugins
     installPlugins();
     // Install the global NodeJS packages
-    installGlobalNodePackages();
+    // installGlobalNodePackages();
+    // Suggest global NodeJS packages
+    outputString('npm i -g yarn gulp-cli', Console::FG_YELLOW);
     // Install the NodeJS packages
     installNodePackages();
     // Say goodbye
