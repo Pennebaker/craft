@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.14] - 2018.01.29
+### Added
+* Added `post-install-cmd` to `composer.json` [(by nystudio107)](https://github.com/nystudio107/craft/releases/tag/1.0.11)
+
+### Changed
+* Switched from `craft.app.config.general.custom.baseUrl` to `alias('@baseUrl')` [(by nystudio107)](https://github.com/nystudio107/craft/releases/tag/1.0.12)
+* Tell Composer to install PHP 7.1-compatible dependencies [(inspired by nystudio107)](https://github.com/nystudio107/craft/releases/tag/1.0.13)
+* Fixed `sitemodule` namespacing [(by nystudio107)](https://github.com/nystudio107/craft/releases/tag/1.0.13)
+
 ## [1.0.13] - 2018.01.19
 ### Changed
 * Synced the `modules/site` with `site-module` and pluginfactory.io generated modules. [(by nystudio107)](https://github.com/nystudio107/craft/releases/tag/1.0.10)
@@ -91,7 +100,8 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/v1.0.13...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/v1.0.14...HEAD
+[1.0.14]: https://github.com/pennebaker/craft/compare/1.0.13...1.0.14
 [1.0.13]: https://github.com/pennebaker/craft/compare/1.0.12...1.0.13
 [1.0.12]: https://github.com/pennebaker/craft/compare/1.0.10...1.0.12
 [1.0.10]: https://github.com/pennebaker/craft/compare/1.0.9...1.0.10
