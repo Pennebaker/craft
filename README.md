@@ -12,7 +12,7 @@ brew install jpegoptim optipng svgo gifsicle pngquant pngcrush webp
 
 ## Using pennebaker/craft
 
-This project package works exactly the waynystudio107's [nystudio107/craft](https://github.com/nystudio107/craft) package works; you create a new project by first creating & installing the project:
+This project package works exactly the way nystudio107's [nystudio107/craft](https://github.com/nystudio107/craft) package works; you create a new project by first creating & installing the project:
 
     composer create-project pennebaker/craft PATH -s RC
 
