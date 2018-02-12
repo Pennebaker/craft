@@ -76,6 +76,11 @@ const CRAFT_SCRIPTS_SETUP = [
             'env'     => '',
             'default' => 'web/assets/',
         ],
+        'LOCAL_BACKUPS_PATH="REPLACE_ME"' => [
+            'substr'  => '"REPLACE_ME"',
+            'env'     => '',
+            'default' => 'backups/',
+        ],
         'LOCAL_DB_NAME="REPLACE_ME"' => [
             'substr'  => '"REPLACE_ME"',
             'env'     => 'DB_DATABASE',
