@@ -81,12 +81,6 @@
     "post-create-project-cmd": [
       "@php craft setup/welcome",
       "@php pen-setup welcome"
-    ],
-    "post-update-cmd": [
-      "@php pen-setup update"
-    ],
-    "post-install-cmd": [
-      "@php pen-setup update"
     ]
   }
 }
