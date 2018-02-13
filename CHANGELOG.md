@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.17] - 2018.02.13
+### Changed
+* Updated `composer.json` version to `1.0.17`
+
 ## [1.0.16] - 2018.02.13
 ### Added
 * Added `.gitignore` files for `/web` directory
