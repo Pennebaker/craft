@@ -76,6 +76,11 @@ const CRAFT_SCRIPTS_SETUP = [
             'env'     => '',
             'default' => 'web/assets/',
         ],
+        'LOCAL_BACKUPS_PATH="REPLACE_ME"' => [
+            'substr'  => '"REPLACE_ME"',
+            'env'     => '',
+            'default' => 'backups/',
+        ],
         'LOCAL_DB_NAME="REPLACE_ME"' => [
             'substr'  => '"REPLACE_ME"',
             'env'     => 'DB_DATABASE',
@@ -285,7 +290,9 @@ function setupNysCraft()
     // Install the default plugins
     installPlugins();
     // Install the global NodeJS packages
-    installGlobalNodePackages();
+    // installGlobalNodePackages();
+    // Suggest global NodeJS packages
+    outputString('npm i -g yarn gulp-cli', Console::FG_YELLOW);
     // Install the NodeJS packages
     installNodePackages();
     // Say goodbye

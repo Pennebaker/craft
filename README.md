@@ -12,18 +12,22 @@ brew install jpegoptim optipng svgo gifsicle pngquant pngcrush webp
 
 ## Using pennebaker/craft
 
-This project package works exactly the waynystudio107's [nystudio107/craft](https://github.com/nystudio107/craft) package works; you create a new project by first creating & installing the project:
+This project package works exactly the way nystudio107's [nystudio107/craft](https://github.com/nystudio107/craft) package works; you create a new project by first creating & installing the project:
 
     composer create-project pennebaker/craft PATH -s RC
 
 Make sure that `PATH` is the path to your project, including the name you want for the project, e.g.:
 
     composer create-project pennebaker/craft craft3 -s RC
+    
+Create your dev database locally (ex. `yoursite_cmsdeb_dev`) and use that database name for the next step. 
 
 Then `cd` to your new project directory, and run Craft's `setup` console command to create your `.env` environments and optionally install:
 
     cd PATH
     ./craft setup
+    
+Copy your local database name (ex. `yoursite_cmsdeb_dev`) into `pen-setup` under the section `LOCAL_DB_NAME` and set `default` to `yoursite_cmsdb_dev`.
 
 Finally, run the `nys-setup` command to configure Craft-Scripts & Craft 3 Multi-Environment based on your newly created `.env` settings:
 
