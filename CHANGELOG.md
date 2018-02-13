@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.17] - 2018.02.13
+### Changed
+* Updated `composer.json` version to `1.0.17`
+
 ## [1.0.16] - 2018.02.13
 ### Added
 * Added `.gitignore` files for `/web` directory
@@ -113,7 +117,8 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.16...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.17...HEAD
+[1.0.16]: https://github.com/pennebaker/craft/compare/1.0.16...1.0.17
 [1.0.16]: https://github.com/pennebaker/craft/compare/1.0.15...1.0.16
 [1.0.15]: https://github.com/pennebaker/craft/compare/1.0.14...1.0.15
 [1.0.14]: https://github.com/pennebaker/craft/compare/1.0.13...1.0.14
