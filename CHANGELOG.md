@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+##[1.0.15] - 2018.02.13
+### Added
+* Added `pen-scripts` folder database backup, restore and rsync scripts
+* Added `craft-architect` to `composer.json`
+* Added `LOCAL_BACKUPS_PATH` to  `pen-setup`
+* Added  `outputString('npm i -g yarn gulp-cli', Console::FG_YELLOW);` to `pen-setup`
+
 ## [1.0.14] - 2018.01.29
 ### Added
 * Added `post-install-cmd` to `composer.json` [(by nystudio107)](https://github.com/nystudio107/craft/releases/tag/1.0.11)
@@ -100,7 +107,8 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/v1.0.14...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.15...HEAD
+[1.0.15]: https://github.com/pennebaker/craft/compare/1.0.14...1.0.15
 [1.0.14]: https://github.com/pennebaker/craft/compare/1.0.13...1.0.14
 [1.0.13]: https://github.com/pennebaker/craft/compare/1.0.12...1.0.13
 [1.0.12]: https://github.com/pennebaker/craft/compare/1.0.10...1.0.12
