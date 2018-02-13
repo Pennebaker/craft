@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-##[1.0.15] - 2018.02.13
+## [1.0.16] - 2018.02.13
+### Added
+* Added `.gitignore` files for `/web` directory
+### Removed
+* Removed `.gitkeep` files from `/web` sub-directories
+
+## [1.0.15] - 2018.02.13
 ### Added
 * Added `pen-scripts` folder database backup, restore and rsync scripts
 * Added `craft-architect` to `composer.json`
@@ -107,7 +113,8 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.15...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.16...HEAD
+[1.0.16]: https://github.com/pennebaker/craft/compare/1.0.15...1.0.16
 [1.0.15]: https://github.com/pennebaker/craft/compare/1.0.14...1.0.15
 [1.0.14]: https://github.com/pennebaker/craft/compare/1.0.13...1.0.14
 [1.0.13]: https://github.com/pennebaker/craft/compare/1.0.12...1.0.13
