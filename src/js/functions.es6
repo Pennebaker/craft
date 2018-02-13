@@ -105,9 +105,19 @@ let hasClass = (className, el) => {
     return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className)
 }
 
+let createElementString = string => {
+  let div = document.createElement('div')
+  div.innerHTML = string
+  return div.firstChild
+}
+
 let matchHeight = selector => {
   let heights = {}
-  let elements = [...document.querySelectorAll(selector)]
+  let elements
+  if (typeof(selector) === "string")
+    elements = [...document.querySelectorAll(selector)]
+  else if (typeof(selector) === "object")
+    elements = selector
   elements.forEach(el => {
     let top = el.getBoundingClientRect().top
     el.style.height = ''

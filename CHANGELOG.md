@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.18] - 2018.02.13
+### Added
+* Added element array for matchHeight in `functions.es6`
+### Removed
+* Removed `post-update-cmd` and `post-install-cmd` in `composer.json` to fix buddy composer install error
+
 ## [1.0.17] - 2018.02.13
 ### Changed
 * Updated `composer.json` version to `1.0.17`
@@ -117,7 +123,8 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.17...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.18...HEAD
+[1.0.17]: https://github.com/pennebaker/craft/compare/1.0.17...1.0.18
 [1.0.16]: https://github.com/pennebaker/craft/compare/1.0.16...1.0.17
 [1.0.16]: https://github.com/pennebaker/craft/compare/1.0.15...1.0.16
 [1.0.15]: https://github.com/pennebaker/craft/compare/1.0.14...1.0.15
