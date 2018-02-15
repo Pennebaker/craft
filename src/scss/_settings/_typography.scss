@@ -1,0 +1,77 @@
+@mixin t-copy
+{
+    font-family: Verdana;
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 3rem;
+
+    color: $black;
+    .fonts-loaded &
+    {
+        font-family: $custom-font;
+    }
+}
+
+@mixin t-copy-small
+{
+    font-family: Verdana;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+
+    color: $black;
+    .fonts-loaded &
+    {
+        font-family: $custom-font;
+    }
+}
+
+@mixin t-nav
+{
+    @include tracking(100);
+
+    font-family: Verdana;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.6rem;
+
+    text-transform: uppercase;
+
+    color: $black;
+    .fonts-loaded &
+    {
+        font-family: $custom-font;
+    }
+}
+
+@mixin t-nav-copyright
+{
+    font-family: Verdana;
+    font-size: .8rem;
+    font-weight: 400;
+    line-height: 1.6rem;
+
+    color: $white-50;
+    .fonts-loaded &
+    {
+        font-family: $custom-font;
+    }
+}
+
+@mixin t-meta
+{
+    @include tracking(-50);
+
+    font-family: Arial;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.8rem;
+
+    text-transform: uppercase;
+
+    color: $white-50;
+    .fonts-loaded &
+    {
+        font-family: $custom-font;
+    }
+}
