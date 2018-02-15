@@ -249,6 +249,18 @@ let ready = fn => {
   }
 }
 
+let load = fn => {
+  if (document.readyState == 'complete') {
+    fn()
+  } else {
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState == 'complete') {
+        fn()
+      }
+    })
+  }
+}
+
 let getActiveIndex = els => {
   let activeIndex = -1
   Object.keys(els).forEach(i => {
