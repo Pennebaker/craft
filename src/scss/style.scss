@@ -9,7 +9,14 @@
 @import '_mixins/mixins';
 
 // Settings
+@import '_settings/grid';
+@import '_settings/fonts';
+@import 'fontello-codes';
 @import '_settings/variables';
+@import '_settings/typography';
 
 // Vendor Libraries
 @import 'neat';
+
+// Additional Settings
+@import '_settings/defaults';

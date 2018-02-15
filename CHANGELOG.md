@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.19] - 2018.02.14
+### Added
+* Added `_default.scss` to `scss/_settings` and to `style.scss`
+* Added `_fonts.scss` to `scss/_settings` and to `style.scss`
+* Added `_typophraphy.scss` to `scss/_settings` and to `style.scss`
+* Added `$white-50` to `scss/_variables`
+* Added `include/fontello` to `style.scss`
+### Changed
+* Updated `_columnizer.scss` in styles `scss/_mixins`
+
 ## [1.0.18] - 2018.02.13
 ### Added
 * Added element array for matchHeight in `functions.es6`
@@ -123,7 +133,8 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.18...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.19...HEAD
+[1.0.18]: https://github.com/pennebaker/craft/compare/1.0.18...1.0.19
 [1.0.17]: https://github.com/pennebaker/craft/compare/1.0.17...1.0.18
 [1.0.16]: https://github.com/pennebaker/craft/compare/1.0.16...1.0.17
 [1.0.16]: https://github.com/pennebaker/craft/compare/1.0.15...1.0.16
