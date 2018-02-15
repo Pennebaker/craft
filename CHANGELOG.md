@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.20] - 2018.02.15
+### Added
+* Added load function to `functions.es6`
+
 ## [1.0.19] - 2018.02.14
 ### Added
 * Added `_default.scss` to `scss/_settings` and to `style.scss`
@@ -133,7 +137,8 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.19...HEAD
+[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.20...HEAD
+[1.0.18]: https://github.com/pennebaker/craft/compare/1.0.19...1.0.20
 [1.0.18]: https://github.com/pennebaker/craft/compare/1.0.18...1.0.19
 [1.0.17]: https://github.com/pennebaker/craft/compare/1.0.17...1.0.18
 [1.0.16]: https://github.com/pennebaker/craft/compare/1.0.16...1.0.17
