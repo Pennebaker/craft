@@ -43,6 +43,7 @@
             "./node_modules/bourbon/core",
             "./node_modules/bourbon-neat/app/assets/stylesheets",
             "./node_modules/normalize-sass",
+            "./node_modules/choices.js/assets/styles/scss",
             "./build/fonts/fontello/scss"
         ],
         "craftConfig": "./config/",
@@ -114,6 +115,7 @@
             "./node_modules/lazysizes/plugins/respimg/ls.respimg.min.js",
             "./node_modules/lazysizes/plugins/attrchange/ls.attrchange.min.js",
             "./node_modules/picturefill/dist/picturefill.min.js",
+            "./node_modules/choices.js/assets/scripts/dist/choices.min.js",
             "./node_modules/vue/dist/vue.min.js"
         ],
         "babelJs": [
@@ -134,6 +136,7 @@
     },
     "dependencies": {
         "axios": "^0.17.1",
+        "choices.js": "^3.0.3",
         "fg-loadcss": "^1.2.0",
         "fontfaceobserver": "^2.0.5",
         "lazysizes": "^2.0.6",

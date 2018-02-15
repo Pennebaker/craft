@@ -1,3 +1,12 @@
+@mixin last-grid-row($columns)
+{
+    &:nth-child(#{$columns}n+1):nth-last-child(-n+#{$columns}),
+    &:nth-child(#{$columns}n+1):nth-last-child(-n+#{$columns}) ~ *
+    {
+        @content;
+    }
+}
+
 @mixin columnizer($column-sizes: null, $column-pushes: null, $column-shifts: null, $vertical-gutter: null, $set-neat-grid: null, $set-max-width: null, $visual: null, $collapse: null)
 {
     $column-count: 0;
@@ -25,9 +34,12 @@
     {
         @include grid-visual;
     }
-    @if $collapse {
+    @if $collapse
+    {
         @include margin(null (0 - $grid-gutter));
-    } @else {
+    }
+    @else
+    {
         @include margin(null auto);
     }
     @if $column-sizes
@@ -37,10 +49,6 @@
             max-width: $max-width;
         }
         box-sizing: border-box;
-    }
-    @if $vertical-gutter
-    {
-        margin-bottom: -$vertical-gutter;
     }
     > *:not(style):not(script)
     {
@@ -67,6 +75,12 @@
                     $column-shift: nth($column-shifts, $i);
                     @include grid-shift($column-shift);
                 }
+            }
+        }
+        @if $vertical-gutter
+        {
+            @include last-grid-row($column-count) {
+                margin-bottom: 0;
             }
         }
         @if $column-sizes
