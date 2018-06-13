@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.0.21] - 2018.02.15
+## [1.0.21] - 2018.06.13
 * Updated babel to latest version
 * Implement CSS Map module which is a useful twig filter, when uglifying the CSS to id and class names.
 
