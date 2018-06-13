@@ -1,4 +1,8 @@
 {
-  "presets": ["es2015"],
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": false
+    }]
+  ],
   "compact": true
 }

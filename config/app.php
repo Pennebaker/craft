@@ -18,11 +18,11 @@ return [
     // All environments
     '*' => [
         'modules'   => [
-            'site-module' => [
-                'class' => \modules\sitemodule\SiteModule::class,
+            'cssmap-module' => [
+                'class' => \modules\cssmapmodule\CSSMapModule::class,
             ],
         ],
-        'bootstrap' => ['site-module'],
+        'bootstrap' => [ 'cssmap-module' ],
     ],
 
     // Live (production) environment

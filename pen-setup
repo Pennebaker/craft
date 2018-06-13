@@ -14,6 +14,7 @@ use yii\helpers\Console;
 use mikehaertl\shellcommand\Command as ShellCommand;
 
 const INSTALL_PLUGINS = [
+    'async-queue',
     // 'cookies',
     'eager-beaver',
     // 'fastcgi-cache-bust',
@@ -71,6 +72,11 @@ const CRAFT_SCRIPTS_SETUP = [
             'env'     => '',
             'default' => '',
         ],
+        'LOCAL_BACKUPS_PATH="REPLACE_ME"' => [
+            'substr'  => '"REPLACE_ME"',
+            'env'     => '',
+            'default' => 'backups/',
+        ],
         'LOCAL_ASSETS_PATH=${LOCAL_ROOT_PATH}"REPLACE_ME"' => [
             'substr'  => '"REPLACE_ME"',
             'env'     => '',
@@ -97,9 +103,9 @@ const CRAFT_SCRIPTS_SETUP = [
             'default' => 'REPLACE_ME',
         ],
         'LOCAL_DB_HOST="localhost"' => [
-            'substr'  => '"localhost"',
+            'substr'  => '"127.0.0.1"',
             'env'     => 'DB_SERVER',
-            'default' => 'localhost',
+            'default' => '127.0.0.1',
         ],
         'LOCAL_DB_PORT="3306"' => [
             'substr'  => '"3306"',
@@ -172,7 +178,7 @@ const CRAFT_MULTI_ENVIRONMENT_SETUP = [
             'REPLACE_ME_DB_SERVER'         => [
                 'substr'  => '',
                 'env'     => 'DB_SERVER',
-                'default' => 'localhost',
+                'default' => '127.0.0.1',
             ],
             'REPLACE_ME_DB_USER'           => [
                 'substr'  => '',
@@ -291,8 +297,6 @@ function setupNysCraft()
     installPlugins();
     // Install the global NodeJS packages
     // installGlobalNodePackages();
-    // Suggest global NodeJS packages
-    outputString('npm i -g yarn gulp-cli', Console::FG_YELLOW);
     // Install the NodeJS packages
     installNodePackages();
     // Say goodbye

@@ -10,7 +10,6 @@
     "paths": {
         "src": {
             "base": "./src/",
-            "css": "./src/css/",
             "fontello": "./src/fontello/",
             "fonts": "./src/fonts/",
             "img": "./src/img/",
@@ -40,10 +39,12 @@
             "path": "/img/site/"
         },
         "scss": [
+            "./node_modules",
             "./node_modules/bourbon/core",
-            "./node_modules/bourbon-neat/app/assets/stylesheets",
+            "./node_modules/sag-bourbon-neat/core",
             "./node_modules/normalize-sass",
             "./node_modules/choices.js/assets/styles/scss",
+            "./node_modules/video.js/src/css",
             "./build/fonts/fontello/scss"
         ],
         "craftConfig": "./config/",
@@ -66,8 +67,7 @@
         "img": [
             "./web/img/"
         ],
-        "components": [
-        ],
+        "components": [],
         "fonts": [
             "./build/fonts/fontello/font/*.{eot,ttf,woff,woff2}",
             "./src/fonts/*.{eot,ttf,woff,woff2}"
@@ -75,8 +75,7 @@
         "purgecss": [
             "./templates/**/*.{html,twig}"
         ],
-        "purgecssWhitelist": [
-        ],
+        "purgecssWhitelist": [],
         "critical": [
             {
                 "url": "",
@@ -99,8 +98,7 @@
                 "template": "404"
             }
         ],
-        "criticalWhitelist": [
-        ],
+        "criticalWhitelist": [],
         "download": [
             {
                 "url": "https://www.google-analytics.com/analytics.js",
@@ -116,11 +114,19 @@
             "./node_modules/lazysizes/plugins/attrchange/ls.attrchange.min.js",
             "./node_modules/picturefill/dist/picturefill.min.js",
             "./node_modules/choices.js/assets/scripts/dist/choices.min.js",
-            "./node_modules/vue/dist/vue.min.js"
+            "./node_modules/vue/dist/vue.min.js",
+            "./node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+            "./node_modules/video.js/dist/video.min.js",
+            "./node_modules/cq-prolyfill/cq-prolyfill.min.js",
+            "./node_modules/siema/dist/siema.min.js",
+            "./node_modules/stickybits/dist/stickybits.min.js"
         ],
         "babelJs": [
             "./src/js/*.js",
             "./src/js/*.es6"
+        ],
+        "inlineCss": [
+            "./node_modules/cookieconsent/build/cookieconsent.min.css"
         ],
         "inlineJs": [
             "./node_modules/fg-loadcss/src/loadCSS.js",
@@ -128,6 +134,7 @@
             "./node_modules/fontfaceobserver/fontfaceobserver.js",
             "./node_modules/loadjs/dist/loadjs.min.js",
             "./node_modules/tiny-cookie/tiny-cookie.min.js",
+            "./node_modules/cookieconsent/build/cookieconsent.min.js",
             "./src/js/tab-handler.js",
             "./src/js/register-service-worker.js",
             "./src/js/asyncload-site-fonts.js"
@@ -137,30 +144,42 @@
     "dependencies": {
         "axios": "^0.17.1",
         "choices.js": "^3.0.3",
+        "cookieconsent": "^3.0.6",
+        "cq-prolyfill": "^0.4.0",
+        "css-class-generator": "^1.0.1",
         "fg-loadcss": "^1.2.0",
         "fontfaceobserver": "^2.0.5",
         "lazysizes": "^2.0.6",
         "loadjs": "^3.3.1",
         "normalize.css": "^5.0.0",
+        "perfect-scrollbar": "^1.3.0",
         "picturefill": "^3.0.2",
+        "sag-bourbon-neat": "^2.1.1",
+        "siema": "^1.5.1",
+        "stickybits": "^3.2.0",
         "tiny-cookie": "^1.0.1",
-        "vue": "^2.5.9"
+        "v3-utility-library": "googlemaps/v3-utility-library",
+        "video.js": "^6.6.3",
+        "vue": "^2.5.16"
     },
     "devDependencies": {
-        "babel-plugin-transform-runtime": "^6.15.0",
-        "babel-preset-es2015": "^6.16.0",
+        "@babel/cli": "^7.0.0-beta.49",
+        "@babel/core": "^7.0.0-beta.49",
+        "@babel/polyfill": "^7.0.0-beta.49",
+        "@babel/preset-env": "^7.0.0-beta.49",
         "bourbon": "^5.0.0",
-        "bourbon-neat": "^1.9.0",
         "chalk": "^1.1.3",
         "critical": "^1.1.0",
+        "css-mqpacker": "^6.0.2",
         "fancy-log": "^1.2.0",
         "git-rev-sync": "^1.7.1",
         "gulp": "^3.9.0",
         "gulp-autoprefixer": "^3.1.0",
-        "gulp-babel": "^6.1.2",
+        "gulp-babel": "^8.0.0-beta.2",
         "gulp-cached": "^1.1.1",
+        "gulp-clean": "^0.4.0",
         "gulp-concat": "^2.6.0",
-        "gulp-csscomb": "^3.0.8",
+        "gulp-csscomb": "Pennebaker/gulp-csscomb#01eee9b",
         "gulp-cssnano": "^2.1.2",
         "gulp-debug": "^2.1.2",
         "gulp-download": "^0.0.1",
@@ -169,12 +188,12 @@
         "gulp-fontello": "^0.4.6",
         "gulp-header": "^1.8.7",
         "gulp-if": "^2.0.1",
-        "gulp-imagemin": "^3.1.1",
+        "gulp-imagemin": "^4.1.0",
         "gulp-livereload": "^3.8.1",
         "gulp-load-plugins": "^1.3.0",
         "gulp-newer": "^1.2.0",
         "gulp-plumber": "^1.1.0",
-        "gulp-postcss": "^7.0.0",
+        "gulp-postcss": "^7.0.1",
         "gulp-print": "^2.0.1",
         "gulp-purgecss": "^0.15.0",
         "gulp-rename": "^1.2.2",
@@ -184,17 +203,19 @@
         "gulp-size": "^2.1.0",
         "gulp-sourcemaps": "^2.2.1",
         "gulp-streamify": "1.0.2",
+        "gulp-tap": "^1.0.1",
         "gulp-uglify": "^1.5.4",
         "moment": "^2.14.1",
         "normalize-sass": "^1.0.0",
         "pa11y": "^4.11.0",
+        "postcss-preset-env": "^3.2.2",
+        "postcss-short": "^4.1.0",
+        "sort-css-media-queries": "^1.3.4",
+        "through2": "^2.0.3",
         "vinyl-source-stream": "^1.1.0"
     },
     "scripts": {
         "start": "gulp",
         "build": "gulp build"
-    },
-    "bugs": {
-        "email": "info@nystudio107.com"
     }
 }
