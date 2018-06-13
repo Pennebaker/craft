@@ -1,10 +1,10 @@
-# Site module for Craft CMS 3.x
+# CSSMap module for Craft CMS 3.x
 
-An example module for Craft CMS 3 that lets you enhance your websites with a custom site module
+Map css names to uglified names.
 
 ## Requirements
 
-This module requires Craft CMS 3.0.0-RC1 or later.
+This module requires Craft CMS 3.0.0 or later.
 
 ## Installation
 
@@ -14,39 +14,39 @@ First, you'll need to add the contents of the `app.php` file to your `config/app
 ```
 return [
     'modules' => [
-        'site-module' => [
-            'class' => \modules\sitemodule\SiteModule::class,
+        'cssmap-module' => [
+            'class' => \modules\cssmapmodule\CSSMapModule::class,
         ],
     ],
-    'bootstrap' => ['site-module'],
+    'bootstrap' => ['cssmap-module'],
 ];
 ```
 You'll also need to make sure that you add the following to your project's `composer.json` file so that Composer can find your module:
 
     "autoload": {
         "psr-4": {
-          "modules\\sitemodule\\": "modules/sitemodule/src/"
+          "modules\\cssmapmodule\\": "modules/cssmapmodule/src/"
         }
     },
 
 After you have added this, you will need to do:
 
     composer dump-autoload
- 
+
  …from the project’s root directory, to rebuild the Composer autoload map. This will happen automatically any time you do a `composer install` or `composer update` as well.
 
-## Site Overview
+## CSSMap Overview
 
 -Insert text here-
 
-## Using Site
+## Using CSSMap
 
 -Insert text here-
 
-## Site Roadmap
+## CSSMap Roadmap
 
 Some things to do, and ideas for potential features:
 
 * Release it
 
-Brought to you by [nystudio107](https://nystudio107.com/)
+Brought to you by [Pennebaker](https://pennebaker.com)

@@ -14,11 +14,11 @@ brew install jpegoptim optipng svgo gifsicle pngquant pngcrush webp
 
 This project package works exactly the way nystudio107's [nystudio107/craft](https://github.com/nystudio107/craft) package works; you create a new project by first creating & installing the project:
 
-    composer create-project pennebaker/craft PATH -s RC
+    composer create-project pennebaker/craft PATH
 
 Make sure that `PATH` is the path to your project, including the name you want for the project, e.g.:
 
-    composer create-project pennebaker/craft craft3 -s RC
+    composer create-project pennebaker/craft craft3
     
 Create your dev database locally (ex. `yoursite_cmsdeb_dev`) and use that database name for the next step. 
 
@@ -81,9 +81,9 @@ In addition to setting up a new Craft 3 CMS project, this project sets up:
 * [A Gulp Workflow for Frontend Development Automation](https://nystudio107.com/blog/a-gulp-workflow-for-frontend-development-automation)
 * [Implementing Critical CSS on your website](https://nystudio107.com/blog/implementing-critical-css)
 * [Simple Static Asset Versioning in Craft CMS](https://nystudio107.com/blog/simple-static-asset-versioning)
-* [Enhancing a Craft CMS 3 Website with a Custom Module](https://nystudio107.com/blog/simple-static-asset-versioning)
+* [Enhancing a Craft CMS 3 Website with a Custom Module](https://nystudio107.com/blog/enhancing-a-craft-cms-3-website-with-a-custom-module)
 
-It also installs a few base plugins that I use on every project. You can read more about it in the [Setting up a New Craft 3 CMS Project](https://nystudio107.com/blog/enhancing-a-craft-cms-3-website-with-a-custom-module) article.
+It also installs a few base plugins that I use on every project. You can read more about it in the [Setting up a New Craft 3 CMS Project](https://nystudio107.com/blog/setting-up-a-craft-cms-3-project) article.
 
 ## Assumptions Made
 
@@ -104,11 +104,11 @@ Obviously you're free to remove whatever components you don't need/want to use.
 
 This project package works exactly the way Pixel & Tonic's [craftcms/craft](https://github.com/craftcms/craft) package works; you create a new project by first creating & installing the project:
 
-    composer create-project nystudio107/craft PATH -s RC
+    composer create-project nystudio107/craft PATH
 
 Make sure that `PATH` is the path to your project, including the name you want for the project, e.g.:
 
-    composer create-project nystudio107/craft craft3 -s RC
+    composer create-project nystudio107/craft craft3
 
 Then `cd` to your new project directory, and run Craft's `setup` console command to create your `.env` environments and optionally install:
 

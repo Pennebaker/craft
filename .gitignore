@@ -52,3 +52,6 @@
 !.vscode/extensions.json
 config.codekit3
 prepros-6.config
+
+# CSS Mapping
+config/cssmap.json
