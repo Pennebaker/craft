@@ -29,7 +29,7 @@ Then `cd` to your new project directory, and run Craft's `setup` console command
     
 Copy your local database name (ex. `yoursite_cmsdeb_dev`) into `pen-setup` under the section `LOCAL_DB_NAME` and set `default` to `yoursite_cmsdb_dev`.
 
-Finally, run the `nys-setup` command to configure Craft-Scripts & Craft 3 Multi-Environment based on your newly created `.env` settings:
+Finally, run the `pen-setup` command to configure Craft-Scripts & Craft 3 Multi-Environment based on your newly created `.env` settings:
 
     ./pen-setup
 
