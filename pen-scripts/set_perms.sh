@@ -43,6 +43,10 @@ WRITEABLE_FILE_PERMS=664 # `-rw-rw-r--`
 echo "Setting base permissions for the project ${LOCAL_ROOT_PATH}"
 sudo chown -R ${LOCAL_CHOWN_USER}:${LOCAL_CHOWN_GROUP} "${LOCAL_ROOT_PATH}"
 sudo chmod -R ${GLOBAL_DIR_PERMS} "${LOCAL_ROOT_PATH}"
+find "${LOCAL_ROOT_PATH}" -printf "" # reading the file names only
+find "${LOCAL_ROOT_PATH}" -type f ! -perm $GLOBAL_FILE_PERMS -printf "" # reading all the inodes (file names are cached)
+#find "${LOCAL_ROOT_PATH}" -type f ! -perm $GLOBAL_FILE_PERMS ! -name "*.sh" -exec sudo chmod $GLOBAL_FILE_PERMS {} + # writing to the cache without reading from disk
+find "${LOCAL_ROOT_PATH}" -type f ! -perm $GLOBAL_FILE_PERMS ! -name "*.sh" -exec sudo chmod $GLOBAL_FILE_PERMS + # writing to the cache without reading from disk
 
 for DIR in ${LOCAL_WRITEABLE_DIRS[@]}
     do
@@ -51,15 +55,16 @@ for DIR in ${LOCAL_WRITEABLE_DIRS[@]}
         then
             echo "Fixing permissions for ${FULLPATH}"
             sudo chmod -R $WRITEABLE_DIR_PERMS "${FULLPATH}"
-            find "${FULLPATH}" -type f ! -name "*.sh" -exec sudo chmod $WRITEABLE_FILE_PERMS {} \;
+            find "${FULLPATH}" -printf "" # reading the file names only
+            find "${FULLPATH}" -type f ! -perm $WRITEABLE_FILE_PERMS -printf "" # reading all the inodes (file names are cached)
+#            find "${FULLPATH}" -type f ! -perm $WRITEABLE_FILE_PERMS ! -name "*.sh" -exec sudo chmod $WRITEABLE_FILE_PERMS {} + # writing to the cache without reading from disk
+            find "${FULLPATH}" -type f ! -perm $WRITEABLE_FILE_PERMS ! -name "*.sh" -exec sudo chmod $WRITEABLE_FILE_PERMS + # writing to the cache without reading from disk
         else
             echo "Creating directory ${FULLPATH}"
             mkdir "${FULLPATH}"
             sudo chmod -R $WRITEABLE_DIR_PERMS "${FULLPATH}"
         fi
     done
-
-find "${LOCAL_ROOT_PATH}" -type f ! -name "*.sh" -exec sudo chmod $GLOBAL_FILE_PERMS {} \;
 
 # Normal exit
 exit 0
