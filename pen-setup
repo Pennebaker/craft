@@ -25,6 +25,7 @@ const INSTALL_PLUGINS = [
     // 'route-map',
     // 'rich-variables',
     // 'transcoder',
+    'seomatic',
     'typogrify',
     // 'preparse-field',
     // 'advanced-url-field',
