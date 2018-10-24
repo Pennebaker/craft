@@ -399,6 +399,13 @@ gulp.task("favicons", ["favicons-generate"], () => {
         .pipe(gulp.dest(pkg.paths.dist.base));
 });
 
+// json task
+gulp.task("json", () => {
+  $.fancyLog("-> Copying json files in " + pkg.paths.src.json);
+  return gulp.src(pkg.paths.src.json + "**/*.json")
+    .pipe(gulp.dest(pkg.paths.dist.json));
+});
+
 // imagemin task
 gulp.task("imagemin", () => {
     $.fancyLog("-> Minimizing images in " + pkg.paths.src.img);
@@ -463,7 +470,7 @@ gulp.task("set-dev-node-env", function() {
 
 // empty build folder
 gulp.task("do-build", ["clean-build"], () => {
-  gulp.start("css", "js", "download", "favicons", "imagemin")
+  gulp.start("css", "js", "download", "favicons", "imagemin", "json")
 });
 
 // set the node environment to production
@@ -478,6 +485,7 @@ gulp.task("default", ["set-dev-node-env", "do-build"], () => {
     $.livereload.listen();
     gulp.watch([pkg.paths.src.fontello + "config.json"], ["scss-fonts"]);
     gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css"]);
+    gulp.watch([pkg.paths.src.json + "**/*.json"], ["json"]);
     gulp.watch([pkg.paths.src.js + "**/*.{js,es6}"], ["js"]);
     gulp.watch([pkg.paths.templates + "**/*.{html,htm,twig}"], () => {
         gulp.src(pkg.paths.templates)

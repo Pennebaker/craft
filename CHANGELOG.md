@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.22] - 2018.10.24
+* Fixed json watch and building in gulp
+* Added seomatic to pen-setup and commented google analytics in _layout.twig
+
 ## [1.0.21] - 2018.06.13
 * Updated babel to latest version
 * Implement CSS Map module which is a useful twig filter, when uglifying the CSS to id and class names.
@@ -141,8 +145,10 @@ Brought to you by [pennebaker](https://pennebaker.com/)
 
 Brought to you by [nystudio107](https://nystudio107.com/)
 
-[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.20...HEAD
-[1.0.18]: https://github.com/pennebaker/craft/compare/1.0.19...1.0.20
+[Unreleased]: https://github.com/pennebaker/craft/compare/1.0.22...HEAD
+[1.0.21]: https://github.com/pennebaker/craft/compare/1.0.21...1.0.22
+[1.0.20]: https://github.com/pennebaker/craft/compare/1.0.19...1.0.20
+[1.0.19]: https://github.com/pennebaker/craft/compare/1.0.19...1.0.20
 [1.0.18]: https://github.com/pennebaker/craft/compare/1.0.18...1.0.19
 [1.0.17]: https://github.com/pennebaker/craft/compare/1.0.17...1.0.18
 [1.0.16]: https://github.com/pennebaker/craft/compare/1.0.16...1.0.17
