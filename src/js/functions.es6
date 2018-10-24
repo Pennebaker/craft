@@ -210,17 +210,27 @@ let post = (url, postData, headers = {}, onload, onerror = () => {}) => {
   request.send(postData)
 }
 
-let scrollToEl = (element, duration, offset = 0) => {
+const scrollToEl = (element, duration = 250, offset = 0, context = window) => {
+  const contextOffset = (context === window) ? 0 : context.getBoundingClientRect().top
   if (duration <= 0) return
-  let scrollY = (window.scrollY) ? window.scrollY : document.documentElement.scrollTop
-  let scrollToY = scrollY + element.getBoundingClientRect().top + offset
+  let scrollY
+  if (context === window)
+    scrollY = (window.scrollY) ? window.scrollY : document.documentElement.scrollTop
+  else
+    scrollY = (context.scrollY) ? context.scrollY : context.scrollTop
+
+  let scrollToY = scrollY + element.getBoundingClientRect().top + offset - contextOffset
   let difference = scrollToY - scrollY
   let perTick = difference / duration * 10
 
+  if (context === window)
+    context.scrollBy(0, perTick)
+  else
+    (context.scrollY) ? context.scrollY += perTick : context.scrollTop += perTick
+  context.scrollY = context.scrollY + perTick
+  if (scrollY === scrollToY) return
   setTimeout(() => {
-    window.scrollBy(0, perTick)
-    if (scrollY === scrollToY) return
-    scrollToEl(element, duration - 10, offset)
+    scrollToEl(element, duration - 10, offset, context)
   }, 10)
 }
 

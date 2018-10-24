@@ -22,7 +22,8 @@
             "css": "./web/css/",
             "js": "./web/js/",
             "fonts": "./web/fonts/",
-            "img": "./web/img/"
+            "img": "./web/img/",
+            "img": "./web/json/"
         },
         "build": {
             "base": "./build/",
@@ -31,7 +32,8 @@
             "fonts": "./build/fonts/",
             "js": "./build/js/",
             "html": "./build/html/",
-            "img": "./build/img/"
+            "img": "./build/img/",
+            "json": ".build/json/"
         },
         "favicon": {
             "src": "./src/img/favicon_src.png",
