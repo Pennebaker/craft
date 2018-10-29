@@ -23,7 +23,7 @@
             "js": "./web/js/",
             "fonts": "./web/fonts/",
             "img": "./web/img/",
-            "img": "./web/json/"
+            "json": "./web/json/"
         },
         "build": {
             "base": "./build/",
