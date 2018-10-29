@@ -1,7 +1,7 @@
 {
   "name": "pennebaker/craft",
   "description": "pennebaker Craft 3 CMS scaffolding project",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "keywords": [
     "craft",
     "cms",
@@ -70,7 +70,7 @@
     "nystudio107/craft-seomatic": "^3.0.20",
     "topshelfcraft/supersort": "^3.0.1",
     "nystudio107/craft-twigprofiler": "^1.0.0",
-    "craftcms/aws-s3": "^1.0.8",
+    "craftcms/aws-s3": "^1.0.8"
   },
   "autoload": {
     "psr-4": {
