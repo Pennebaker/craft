@@ -20,7 +20,7 @@ Make sure that `PATH` is the path to your project, including the name you want f
 
     composer create-project pennebaker/craft craft3
     
-Create your dev database locally (ex. `yoursite_cmsdeb_dev`) and use that database name for the next step. 
+Create your dev database locally (ex. `yoursite_cmsdb_dev`) and use that database name for the next step. 
 
 Then `cd` to your new project directory, and run Craft's `setup` console command to create your `.env` environments and optionally install:
 
@@ -29,7 +29,7 @@ Then `cd` to your new project directory, and run Craft's `setup` console command
     
 Copy your local database name (ex. `yoursite_cmsdeb_dev`) into `pen-setup` under the section `LOCAL_DB_NAME` and set `default` to `yoursite_cmsdb_dev`.
 
-Finally, run the `nys-setup` command to configure Craft-Scripts & Craft 3 Multi-Environment based on your newly created `.env` settings:
+Finally, run the `pen-setup` command to configure Craft-Scripts & Craft 3 Multi-Environment based on your newly created `.env` settings:
 
     ./pen-setup
 
