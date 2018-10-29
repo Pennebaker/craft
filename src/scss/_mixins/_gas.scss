@@ -1,0 +1,474 @@
+/*
+ * Default GaS Variables
+ */
+$gas-max-width: 1366px !global;
+$gas-column-max: 12 !global;
+$gas-gutter-h: 20px !global;
+$gas-gutter-v: 20px !global;
+
+/*
+ * Last Grid Row
+ */
+@mixin last-grid-row($columns-count)
+{
+    &:nth-child(#{$columns-count}n+1):nth-last-child(-n+#{$columns-count}),
+    &:nth-child(#{$columns-count}n+1):nth-last-child(-n+#{$columns-count}) ~ *
+    {
+        @content;
+    }
+}
+
+/*
+ * Grids and Stuff
+ *
+ * Columns : $columns : null
+ *     send in a scss list that defines the size of columns
+ *
+ * Shift : $shift : null
+ *     send in a scss list that shifts columns without affecting other columns
+ *
+ * Push : $push : null
+ *     send in a scss list that pushes columns that affects columns that come after it in the markup
+ *
+ * Max Width : $max-width : $gas-max-width
+ *     Set the max width of the container or default to the global if none is passed in.
+ *
+ * Columns Max : $columns-max : $gas-columns-max
+ *     Set how many columns there are or default to the global if none is passed in.
+ *
+ * Gutter Horizontal : $gutter-h : $gas-gutter-h
+ *     Set the horizontal gutter size or default to the global if none is passed in.
+ *
+ * Container : $container : true
+ *     Should the width and max width be set.
+ *     This should be false for nested GaS.
+ *
+ * Collapse Horizontal Gutter : $collapse-h : false
+ *     Set to true if there should only be a gutter between columns horizontally.
+ *     Set to false if there should be a gutter between columns and on the outside edges horizontally.
+ *
+ * Gutter Vertical : $gutter-v : $gas-gutter-v
+ *     Set the vertical gutter size or default to the global if none is passed in.
+ *
+ * Collapse Vertical Gutter : $collapse-v : false
+ *     Set to true if there should only be a gutter between columns vertically.
+ *     Set to false if there should be a gutter between columns and on the outside edges vertically.
+ *     Default is true
+ *
+ */
+@mixin gas($columns: null, $shift: null, $push: null, $max-width: $gas-max-width, $column-max: $gas-column-max, $gutter-h: $gas-gutter-h, $container: true, $collapse-h: false, $gutter-v: $gas-gutter-v, $collapse-v: true)
+{
+    display: block;
+
+    box-sizing: border-box; // Don't let borders affect the sizing.
+    @if $container
+    {
+        max-width: $max-width; // Limit the max width to what was passed in.
+        width: 100%;
+        // Center the element
+        margin-right: auto;
+        margin-left: auto;
+    }
+    // Check if shift and push are both passed in.
+    @if $shift and $push
+    {
+        @error 'You cannot use both shift and push.';
+    }
+    // Check that the size of the shift array is the same length as the columns array
+    @if $shift
+    {
+        @if length($columns) != length($shift)
+        {
+            @error 'Columns and shift lists need to be the same length.';
+        }
+    }
+    // Check that the size of the push array is the same length as the columns array
+    @if $push
+    {
+        @if length($columns) != length($push)
+        {
+            @error 'Columns and push lists need to be the same length.';
+        }
+    }
+
+    // Setup default variables
+    $rowCount: 0;
+    $curColumns: 0;
+    $row: ();
+    $rows: ();
+    $row-shift: ();
+    $rows-shift: ();
+    $row-push: ();
+    $rows-push: ();
+    // Loop through the columns
+    @for $count from 1 through length($columns)
+    {
+        $size: nth($columns, $count);
+        $size-shift: null;
+        $size-push: null;
+        // Set the shift size if shift is defined.
+        @if $shift
+        {
+            $size-shift: nth($shift, $count);
+        }
+        // Set the push size if push is defined.
+        @if $push
+        {
+            $size-push: nth($push, $count);
+        }
+        // If current column count is less than or equal to the max columns
+        @if round($curColumns + $size * 1000) / 1000 <= $column-max
+        {
+            // Increment current columns
+            $curColumns: $curColumns + $size;
+            // Append to the row
+            $row: append($row, $size);
+            // Append to the shift row if shift is defined
+            @if $shift
+            {
+                $row-shift: append($row-shift, $size-shift);
+            }
+            // Append to the push row if push is defined
+            @if $push
+            {
+                $row-push: append($row-push, $size-push);
+            }
+        }
+            // If current column causes the count to go past the max columns
+        @else
+        {
+            // Increment row counter
+            $rowCount: $rowCount + 1;
+            // Set current column to size
+            $curColumns: $size;
+            // Append the current row to the rows array
+            $rows: append($rows, $row);
+            // Set row to a new array containing size
+            $row: ($size);
+            // Append shift row to the shift rows and recreate shift row
+            @if $shift
+            {
+                $rows-shift: append($rows-shift, $row-shift);
+                $row-shift: ($size-shift);
+            }
+            // Append push row to the push rows and recreate push row
+            @if $push
+            {
+                $rows-push: append($rows-push, $row-push);
+                $row-push: ($size-push);
+            }
+        }
+        // If current column count is equal to grid column max
+        @if $curColumns == $column-max
+        {
+            // Increment row counter
+            $rowCount: $rowCount + 1;
+            // Reset current column count
+            $curColumns: 0;
+            // Append the current row to the rows array
+            $rows: append($rows, $row);
+            // Reset the current row array
+            $row: ();
+            // Append shift row to the shift rows and reset shift row
+            @if length($row-shift) > 0
+            {
+                $rows-shift: append($rows-shift, $row-shift);
+                $row-shift: ();
+            }
+            // Append push row to the push rows and reset push row
+            @if length($row-push) > 0
+            {
+                $rows-push: append($rows-push, $row-push);
+                $row-push: ();
+            }
+        }
+    }
+    // If the shift row has data append it to the rows shift
+    @if length($row-shift) > 0
+    {
+        $rows-shift: append($rows-shift, $row-shift);
+    }
+    // If shift is not defined set the rows shift to null
+    @if $shift == null
+    {
+        $rows-shift: null;
+    }
+    // If the push row has data append it to the rows push
+    @if length($row-push) > 0
+    {
+        $rows-push: append($rows-push, $row-push);
+    }
+    // If push is not defined set the rows push to null
+    @if $push == null
+    {
+        $rows-push: null;
+    }
+    // If the row has data append it to the rows
+    @if length($row) > 0
+    {
+        $rows: append($rows, $row);
+    }
+    // For every element under wrapper.
+    > *
+    {
+        display: block;
+        float: left;
+        box-sizing: border-box;
+        // Set clear none on all blocks that are not the first in the row
+        &:not(:nth-child(#{length($columns)}n+1))
+        {
+            clear: none;
+        }
+        // Set clear both on all blocks that are first in the row
+        &:nth-child(#{length($columns)}n+1)
+        {
+            clear: both;
+        }
+        // Initialize last row count variable to 0
+        $last-row-count: 0;
+        // Loop 1 through length of rows as row count
+        @for $row-count from 1 through length($rows)
+        {
+            // Set the current row variable
+            $row: nth($rows, $row-count);
+            // Set the gutter count to 1 less than the column count
+            $gutter-count: length($row) - 1;
+            @if $collapse-h != true
+            {
+                // Set increase the gutter count by 2 if there is edge gutters.
+                $gutter-count: $gutter-count + 2;
+            }
+            // Set the current row shift variable if shift is defined
+            @if $shift
+            {
+                $row-shift: nth($rows-shift, $row-count);
+            }
+            // Set the current row push variable if push is defined
+            @if $push
+            {
+                $row-push: nth($rows-push, $row-count);
+            }
+            // Loop 1 through length of row as count
+            @for $count from 1 through length($row)
+            {
+                // Set the current size variable
+                $size: nth($row, $count);
+                // Set n-plus to the current count plus the last row count
+                $n-plus: $count + $last-row-count;
+                // If n plus is equal to the length of columns set it to empty string because 3n+3 is the same as 3n
+                @if ($n-plus == length($columns))
+                {
+                    $n-plus: '';
+                }
+                    // If it isn't the same length set n plus to +#
+                @else
+                {
+                    $n-plus: '+#{$n-plus}';
+                }
+                // Set the size shift variable to null to scope it here
+                $size-shift: null;
+                @if $shift
+                {
+                    // If shift is defined set the current size shift variable
+                    $size-shift: nth($row-shift, $count);
+                }
+                // Set the size push variable to null to scope it here
+                $size-push: null;
+                @if $push
+                {
+                    // If push is defined set the current size push variable
+                    $size-push: nth($row-push, $count);
+                }
+                // Set nth child styling
+                &:nth-child(#{length($columns)}n#{$n-plus})
+                {
+                    // Set ratio to column size ratio
+                    $ratio: $size / $column-max;
+                    // Set width to ratio as a percentage
+                    $width: $ratio * 100%;
+                    // Set gutter offset to this calculation
+                    $gutter-offset: $gutter-h / 2 + (50 - $ratio * 100) / 50 * $gutter-h / 2;
+                    @if $collapse-h != true
+                    {
+                        // If there is an edge gutter set the gutter to this.
+                        $gutter-offset: $gutter-h + $gutter-h * $ratio;
+                    }
+                    // Set the column width
+                    width: calc(#{$width} - #{$gutter-offset});
+                    // If there is an edge gutter or not on the first column set the margin left to the gutter size.
+                    @if $collapse-h != true or $count > 1
+                    {
+                        margin-left: $gutter-h;
+                    }
+                    @if $push
+                    {
+                        // Set push ratio to push size ratio
+                        $ratio-push: $size-push / $column-max;
+                        // Set gutter push offset to this calculation
+                        $gutter-offset-push: $gutter-h / 2 + (50 - $ratio-push * 100) / 50 * $gutter-h / 2;
+                        // Set push width to push ratio as a percentage
+                        $width-push: $ratio-push * 100%;
+                        // Set previous gutters to count minus 1
+                        $prev-gutters: $count - 1;
+                        @if $collapse-h != true
+                        {
+                            // If there is edge gutters set prev gutters to count
+                            $prev-gutters: $count;
+                        }
+                        // If the push is not nothing and there is previous gutters
+                        @if $prev-gutters > 0 and $size-push != 0
+                        {
+                            // If there is not an edge gutter
+                            @if $collapse-h
+                            {
+                                // Set the gutter adjust based on the push ratio
+                                $gutter-adjust: $gutter-h * $ratio-push + $gutter-h;
+                                // Set the operation to plus
+                                $operation: '+';
+                                @if $gutter-adjust < 0
+                                {
+                                    // If the gutter adjust is negative set the operation to minus
+                                    $operation: '-';
+                                    // Set the gutter adjust to the absolute value of it
+                                    $gutter-adjust: abs($gutter-adjust);
+                                }
+                                @if $gutter-adjust > 0
+                                {
+                                    // If the gutter adjust is not zero set the margin left to width push and gutter adjust
+                                    margin-left: calc(#{$width-push} #{$operation} #{$gutter-adjust});
+                                }
+                                @else
+                                {
+                                    // If the gutter adjust is zero set the margin left to width push
+                                    margin-left: #{$width-push};
+                                }
+                            }
+                                // If there is an edge gutter
+                            @else
+                            {
+                                // Set the gutter adjust based on the push ratio accounting for additional edge gutters
+                                $gutter-adjust: $gutter-h + $gutter-h * $ratio-push - $gutter-h * 2;
+                                // Set the operation to minus
+                                $operation: '-';
+                                @if $gutter-adjust < 0
+                                {
+                                    // If the gutter is negative set the operation to plus
+                                    $operation: '+';
+                                    // Set the gutter adjust to the absolute value of it
+                                    $gutter-adjust: abs($gutter-adjust);
+                                }
+                                @if $gutter-adjust > 0
+                                {
+                                    // If the gutter adjust is not zero set the margin left to width push and gutter adjust
+                                    margin-left: calc(#{$width-push} #{$operation} #{$gutter-adjust});
+                                }
+                                @else
+                                {
+                                    // If the gutter adjust is zero set the margin left to width push
+                                    margin-left: #{$width-push};
+                                }
+                            }
+                        }
+                        @else
+                        {
+                            // If not using edge gutters or push size is zero
+                            @if $size-push == 0
+                            {
+                                @if $collapse-h != true
+                                {
+                                    margin-left: $gutter-h;
+                                }
+                            }
+                            @elseif $collapse-h != true
+                            {
+                                // Set left margin to push width and gutter size minus push gutter offset
+                                margin-left: calc(#{$width-push} + #{$gutter-h - $gutter-offset-push});
+                            }
+                                // If using edge gutters
+                            @else
+                            {
+                                @if $width-push > 0
+                                {
+                                    // Set left margin to push width and gutter size
+                                    margin-left: calc(#{$width-push} + #{$gutter-h});
+                                }
+                                @else
+                                {
+                                    margin-left: $gutter-h;
+                                }
+                            }
+                        }
+                    }
+                    @if $shift
+                    {
+                        // Set shift ratio to shift size ratio
+                        $ratio-shift: $size-shift / $column-max;
+                        // Set gutter shift offset to shift ratio times gutter size
+                        $gutter-offset-shift: $ratio-shift * $gutter-h;
+                        // Set shift width to shift ratio as a percentage
+                        $width-shift: $ratio-shift * 100%;
+                        // Set previous gutters to count minus 1
+                        $prev-gutters: $count - 1;
+                        @if $collapse-h !=  true
+                        {
+                            // If there is edge gutters set prev gutters to count
+                            $prev-gutters: $count;
+                            // Set gutter push offset to this calculation
+                            $gutter-offset-shift: ($gutter-h / 2 - (50 - $ratio-shift * 100) / 50 * $gutter-h / 2) * -1;
+                        }
+
+                        // Set the operation to plus
+                        $operation: '+';
+                        @if $gutter-offset-shift < 0
+                        {
+                            // If the gutter offset shift is negative set the operation to minus
+                            $operation: '-';
+                            // Set the gutter offset shift to the absolute value of it
+                            $gutter-offset-shift: abs($gutter-offset-shift);
+                        }
+                        // Set the position to relative
+                        position: relative;
+                        // Set the left position based off of shift width and shift gutter offset
+                        left: calc(#{$width-shift} #{$operation} #{$gutter-offset-shift});
+                    }
+                    // Set the bottom margin to the vertical gutter.
+                    margin-bottom: $gutter-v;
+                }
+            }
+            // Increment last row count by the current row count
+            $last-row-count: $last-row-count + length($row);
+        }
+        // If there is no vertical edge gutter
+        @if $collapse-v == true
+        {
+            // Set the last row of the grid to have no bottom margin
+            @include last-grid-row(length(nth($rows, length($rows))))
+            {
+                margin-bottom: 0;
+            }
+        }
+            // If there is vertical edge gutters
+        @else
+        {
+            // Loop over n based on the first row size
+            $n: 0;
+            @while $n < length(nth($rows, 1))
+            {
+                // Increment n
+                $n: $n + 1;
+                &:nth-child(#{$n})
+                {
+                    // Set the top margin to the vertical gutter
+                    margin-top: $gutter-v;
+                }
+            }
+        }
+    }
+    // Clear all floats
+    &:after
+    {
+        display: block;
+        content: '';
+        clear: both;
+    }
+}

@@ -55,7 +55,7 @@ gulp.task("scss-comb", () => {
     let originalHashes = []
     return gulp.src([
           pkg.paths.src.scss + '**/*.scss',
-          '!' + pkg.paths.src.scss + '**/_columnizer.scss'
+          '!' + pkg.paths.src.scss + '**/_gas.scss'
         ])
         .pipe(
           through.obj((file, enc, cb) => {
@@ -425,7 +425,7 @@ gulp.task("imagemin", () => {
 gulp.task("generate-fontello", () => {
     return gulp.src(pkg.paths.src.fontello + "config.json")
         .pipe($.fontello({
-          host: 'https://fontello.pennebaker.io'
+          // host: 'https://fontello.pennebaker.io'
         }))
         .pipe($.print())
         .pipe(gulp.dest(pkg.paths.build.fontello));
